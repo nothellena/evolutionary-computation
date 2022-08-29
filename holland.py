@@ -75,7 +75,7 @@ def get_fitness(chromossomes):
     chromossomes_fitness = np.zeros(len(chromossomes))
 
     for i in range(len(chromossomes)):
-        for j in range(1, 7):
+        for j in range(7):
             if chromossomes[i][j] == 0 and chromossomes[i][j + 1] == 1:
                 chromossomes_fitness[i] += 1
 
@@ -141,49 +141,49 @@ def order_by_fitness(chromossomes, chromosome_fitness):
 # Gera população
 population = np.random.randint(2, size=(10, 8))
 
-#print('População inicial gerada: ')
-#print(population)
+print('População inicial gerada: ')
+print(population)
 
-#print('\nPopulação inicial adaptada')
+print('\nPopulação inicial adaptada')
 fitness = get_fitness(population)
 
-#print(fitness)
+print(fitness)
 
 population, fitness = order_by_fitness(population, fitness)
-#print('\nPopulação inicial na ordem decrescente de adaptação')
-#print(population)
+print('\nPopulação inicial na ordem decrescente de adaptação')
+print(population)
 
 while fitness[0] != 4:
     descendants_size = 0
     descendants, descendants_size = crossover(population[:5], descendants_size)
 
-    #print('\nCruzamento:')
-    #print(descendants)
+    print('\nCruzamento:')
+    print(descendants)
 
     descendants, descendants_size = mutations(population[:5], descendants, descendants_size)
 
-    #print('\nMutações:')
-    #print(descendants)
+    print('\nMutações:')
+    print(descendants)
 
     descendants, descendants_size = invert(population[:5], descendants, descendants_size)
 
-    #print('\nInversões:')
-    #print(descendants)
+    print('\nInversões:')
+    print(descendants)
 
     descendants_fitness = get_fitness(descendants)
 
-    #print('Índice de adaptação de cada descendente')
-    #print(descendants_fitness)
+    print('Índice de adaptação de cada descendente')
+    print(descendants_fitness)
 
     descendants, descendants_fitness = order_by_fitness(descendants, descendants_fitness)
-    #print('\nPopulação descendente na ordem decrescente de adaptação')
-    #print(descendants)
+    print('\nPopulação descendente na ordem decrescente de adaptação')
+    print(descendants)
 
     population, fitness = replace(population,descendants, fitness, descendants_fitness, descendants_size)
     population, fitness = order_by_fitness(population, fitness)
-    #print('\nPopulação nova')
-    #print(population)
+    print('\nPopulação nova')
+    print(population)
 
-    print(fitness)
+
 
 
